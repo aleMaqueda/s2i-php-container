@@ -16,15 +16,16 @@ LABEL io.k8s.description="Platform for building and running PHP 5.5 applications
       io.openshift.tags="builder,php,php55"
 
 # Install Apache httpd and PHP
-RUN yum install -y epel-release php5-mcrypt
-RUN yum install -y centos-release-scl && \
-    INSTALL_PKGS="httpd24 php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
+RUN yum install -y epel-release
+RUN yum install -y php5-mcrypt
+RUN yum install -y centos-release-scl 
+ENV INSTALL_PKGS="httpd24 php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
                   php55-php-fpm php55-php-gd php55-php-intl php55-php-ldap php55-php-mbstring php55-php-pdo \
                   php55-php-pecl-memcache php55-php-process php55-php-soap php55-php-opcache php55-php-xml \
-                  php55-php-gmp" && \
-    yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum -y clean all --enablerepo='*'
+                  php55-php-gmp" 
+RUN yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus $INSTALL_PKGS
+RUN rpm -V $INSTALL_PKGS 
+RUN yum -y clean all --enablerepo='*'
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
