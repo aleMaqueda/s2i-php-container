@@ -20,6 +20,8 @@ RUN yum install -y epel-release wget
 RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-mcrypt-5.5.31-31.el7.art.x86_64.rpm
 RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-imap-5.5.31-31.el7.art.x86_64.rpm
 RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-common-5.5.31-31.el7.art.x86_64.rpm
+RUN wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/l/libc-client-2007f-16.el7.x86_64.rpm
+RUN rpm -Uvh libc-client-2007f-16.el7.x86_64.rpm
 RUN rpm -Uvh atomic-php55-php-common-5.5.31-31.el7.art.x86_64.rpm
 RUN rpm -Uvh atomic-php55-php-imap-5.5.31-31.el7.art.x86_64.rpm
 RUN rpm -Uvh atomic-php55-php-mcrypt-5.5.31-31.el7.art.x86_64.rpm
