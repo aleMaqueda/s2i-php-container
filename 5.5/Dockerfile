@@ -16,8 +16,10 @@ LABEL io.k8s.description="Platform for building and running PHP 5.5 applications
       io.openshift.tags="builder,php,php55"
 
 # Install Apache httpd and PHP
-RUN yum install -y epel-release
-RUN yum install -y php5-mcrypt
+RUN yum install -y epel-release wget
+RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-mcrypt-5.5.31-31.el7.art.x86_64.rpm
+RUN rpm -Uvh atomic-php55-php-mcrypt-5.5.31-31.el7.art.x86_64.rpm
+RUN yum install atomic-php55-php-mcrypt
 RUN yum install -y centos-release-scl 
 ENV INSTALL_PKGS="httpd24 php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
                   php55-php-fpm php55-php-gd php55-php-intl php55-php-ldap php55-php-mbstring php55-php-pdo \
