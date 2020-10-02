@@ -17,6 +17,7 @@ LABEL io.k8s.description="Platform for building and running PHP 5.5 applications
 
 # Install Apache httpd and PHP
 RUN yum install -y epel-release wget
+RUN sudo yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-mcrypt-5.5.31-31.el7.art.x86_64.rpm
 RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-imap-5.5.31-31.el7.art.x86_64.rpm
 RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-common-5.5.31-31.el7.art.x86_64.rpm
