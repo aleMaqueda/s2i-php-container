@@ -20,6 +20,8 @@ RUN yum install -y epel-release wget install policycoreutils-python
 #RUN /usr/sbin/setenforce 0
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/openssl-libs-1.0.2k-19.el7.x86_64.rpm
+RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/openssl-devel-1.0.2k-19.el7.x86_64.rpm
+
 RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-runtime-2.1-5.el7.remi.x86_64.rpm
 RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-php-cli-5.5.38-12.el7.remi.x86_64.rpm
 RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-php-pear-1.10.12-2.el7.remi.noarch.rpm
@@ -35,6 +37,7 @@ RUN rpm -Uvh tcl-8.5.13-8.el7.x86_64.rpm
 RUN rpm -Uvh environment-modules-3.2.10-10.el7.x86_64.rpm
 RUN rpm -Uvh php55-runtime-2.1-5.el7.remi.x86_64.rpm
 
+RUN rpm -Uvh openssl-devel-1.0.2k-19.el7.x86_64.rpm
 RUN rpm -Uvh openssl-libs-1.0.2k-19.el7.x86_64.rpm
 RUN rmp -Uvh php55-php-common-5.5.38-11.el7.remi.x86_64.rpm
 
