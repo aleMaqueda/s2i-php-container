@@ -16,16 +16,18 @@ LABEL io.k8s.description="Platform for building and running PHP 5.5 applications
       io.openshift.tags="builder,php,php55"
 
 # Install Apache httpd and PHP
-RUN yum install -y epel-release wget install policycoreutils-python openssl-libs utils
-#RUN /usr/sbin/setenforce 0
+
+RUN yum install -y centos-release-scl
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
+RUN yum install -y httpd24
+
 RUN yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 RUN yum-config-manager --enable remi-php55
 
-ENV INSTALL_PKGS="httpd24 php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
+ENV INSTALL_PKGS="php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
                   php55-php-fpm php55-php-gd php55-php-intl php55-php-ldap php55-php-mbstring php55-php-pdo \
                   php55-php-pecl-memcache php55-php-process php55-php-soap php55-php-opcache php55-php-xml \
-                  php55-php-gmp" 
+                  php55-php-gmp"
 RUN yum install -y  $INSTALL_PKGS
 RUN yum -y clean all --enablerepo='*'
 
@@ -38,6 +40,11 @@ COPY ./root/ /
 # In order to drop the root user, we have to make some directories world
 # writeable as OpenShift default security model is to run the container under
 # random UID.
+RUN mkdir -p /opt/rh/php55/root/
+RUN ln -s /opt/remi/php55/root/etc/ /opt/rh/php55/root/etc
+RUN ln -s /etc/httpd/conf.d/php55-php.conf /opt/rh/httpd24/root/etc/httpd/conf.d/php55-php.conf
+RUN ls -la /opt/rh/
+
 RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf && \
     sed -i '/php_value session.save_path/d' /opt/rh/httpd24/root/etc/httpd/conf.d/php55-php.conf && \
     echo "IncludeOptional /opt/app-root/etc/conf.d/*.conf" >> /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf && \
@@ -48,7 +55,7 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/con
     chmod -R ug+rwx /opt/app-root && \
     chmod -R a+rwx /opt/rh/php55/root/etc && \
     chmod -R a+rwx /opt/rh/httpd24/root/var/run/httpd
-    
+
 USER 1001
 
 # Set the default CMD to print the usage of the language image
