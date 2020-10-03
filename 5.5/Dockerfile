@@ -28,12 +28,13 @@ ENV INSTALL_PKGS="php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bc
                   php55-php-fpm php55-php-gd php55-php-intl php55-php-ldap php55-php-mbstring php55-php-pdo \
                   php55-php-pecl-memcache php55-php-process php55-php-soap php55-php-opcache php55-php-xml \
                   php55-php-gmp"
+                  
 RUN yum install -y  $INSTALL_PKGS
 RUN yum -y clean all --enablerepo='*'
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
-mkdir -p /usr/libexec/s2i
+RUN mkdir -p /usr/libexec/s2i
 COPY ./s2i/ /usr/libexec/s2i/
 
 # Copy extra files to the image.
