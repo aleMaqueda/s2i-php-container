@@ -18,20 +18,8 @@ LABEL io.k8s.description="Platform for building and running PHP 5.5 applications
 # Install Apache httpd and PHP
 RUN yum install -y epel-release wget
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
-RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-mcrypt-5.5.31-31.el7.art.x86_64.rpm
-RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-imap-5.5.31-31.el7.art.x86_64.rpm
-RUN wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-php55-php-common-5.5.31-31.el7.art.x86_64.rpm
-RUN wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/l/libc-client-2007f-16.el7.x86_64.rpm
-RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm
-RUN wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/l/libmcrypt-2.5.8-13.el7.x86_64.rpm
-RUN rpm -Uvh libmcrypt-2.5.8-13.el7.x86_64.rpm
-RUN rpm -Uvh libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm
-RUN rpm -Uvh libc-client-2007f-16.el7.x86_64.rpm
-RUN rpm -Uvh atomic-php55-php-common-5.5.31-31.el7.art.x86_64.rpm
-RUN rpm -Uvh atomic-php55-php-imap-5.5.31-31.el7.art.x86_64.rpm
-RUN rpm -Uvh atomic-php55-php-mcrypt-5.5.31-31.el7.art.x86_64.rpm
-RUN yum install atomic-php55-php-mcrypt
-RUN yum install -y centos-release-scl 
+RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-2.1-5.el7.remi.x86_64.rpm
+RUN yum install php55-2.1-5.el7.remi.x86_64.rpm
 ENV INSTALL_PKGS="httpd24 php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
                   php55-php-fpm php55-php-gd php55-php-intl php55-php-ldap php55-php-mbstring php55-php-pdo \
                   php55-php-pecl-memcache php55-php-process php55-php-soap php55-php-opcache php55-php-xml \
