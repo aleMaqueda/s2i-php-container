@@ -156,3 +156,4 @@ Repository organization
             Script that runs the [S2I](https://github.com/openshift/source-to-image) test framework.
 
 
+container-entrypoint /bin/sh -c $STI_SCRIPTS_PATH/usage"
