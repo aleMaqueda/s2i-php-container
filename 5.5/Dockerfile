@@ -27,7 +27,6 @@ ENV INSTALL_PKGS="httpd24 php55 php55-php php55-php-mysqlnd php55-php-pgsql php5
                   php55-php-pecl-memcache php55-php-process php55-php-soap php55-php-opcache php55-php-xml \
                   php55-php-gmp" 
 RUN yum install -y  $INSTALL_PKGS
-RUN rpm -V $INSTALL_PKGS 
 RUN yum -y clean all --enablerepo='*'
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
