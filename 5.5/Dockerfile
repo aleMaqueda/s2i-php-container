@@ -19,7 +19,7 @@ LABEL io.k8s.description="Platform for building and running PHP 5.5 applications
 RUN yum install -y epel-release wget
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
 RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-2.1-5.el7.remi.x86_64.rpm
-RUN yum install php55-2.1-5.el7.remi.x86_64.rpm
+RUN rpm -Uvh php55-2.1-5.el7.remi.x86_64.rpm
 ENV INSTALL_PKGS="httpd24 php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
                   php55-php-fpm php55-php-gd php55-php-intl php55-php-ldap php55-php-mbstring php55-php-pdo \
                   php55-php-pecl-memcache php55-php-process php55-php-soap php55-php-opcache php55-php-xml \
