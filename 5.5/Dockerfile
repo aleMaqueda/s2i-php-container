@@ -19,7 +19,7 @@ LABEL io.k8s.description="Platform for building and running PHP 5.5 applications
 RUN yum install -y epel-release wget install policycoreutils-python openssl-libs utils
 #RUN /usr/sbin/setenforce 0
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
-RUN yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+RUN yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 RUN yum-config-manager --enable remi-php55
 
 ENV INSTALL_PKGS="httpd24 php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
