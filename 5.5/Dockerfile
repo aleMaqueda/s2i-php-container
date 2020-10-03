@@ -26,6 +26,8 @@ RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-php-pear-1.10.
 RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-runtime-2.1-5.el7.remi.x86_64.rpm
 RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-2.1-5.el7.remi.x86_64.rpm
 RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/environment-modules-3.2.10-10.el7.x86_64.rpm
+RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/tcl-8.5.13-8.el7.x86_64.rpm
+RUN rpm -Uvh tcl-8.5.13-8.el7.x86_64.rpm
 RUN rpm -Uvh environment-modules-3.2.10-10.el7.x86_64.rpm
 RUN rpm -Uvh php55-runtime-2.1-5.el7.remi.x86_64.rpm
 RUN rpm -Uvh php55-php-common-5.5.38-12.el7.remi.x86_64.rpm
