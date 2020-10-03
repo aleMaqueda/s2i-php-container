@@ -32,7 +32,6 @@ RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/tcl-8.5.13-8.el7.x
 RUN rpm -Uvh tcl-8.5.13-8.el7.x86_64.rpm
 RUN rpm -Uvh environment-modules-3.2.10-10.el7.x86_64.rpm
 RUN rpm -Uvh php55-runtime-2.1-5.el7.remi.x86_64.rpm
-RUN rpm -Uvh libzip5-1.7.3-1.el7.remi.x86_64.rpm
 
 
 
