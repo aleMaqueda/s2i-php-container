@@ -36,6 +36,7 @@ RUN yum -y clean all --enablerepo='*'
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 RUN mkdir -p /usr/libexec/s2i
 COPY ./s2i/ /usr/libexec/s2i/
+RUN chown 1000 /usr/libexec/s2i/save-artifacts
 
 # Copy extra files to the image.
 COPY ./root/ /
