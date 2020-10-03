@@ -8,7 +8,7 @@ echo "---> Installing application source..."
 pwd
 ls -la $PWD
 ls -la /tmp/src
-ls -la  /usr/libexec/s2i
+ls -la  /usr/libexec/s2i/save-artifacts
 
 mv /tmp/src/* ./
 
