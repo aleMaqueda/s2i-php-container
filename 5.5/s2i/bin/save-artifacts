@@ -1,4 +1,5 @@
 #!/bin/sh
 pushd ${HOME} >/dev/null
-tar cf - vendor
+dirs -l -v
+#tar cf - vendor
 popd >/dev/null
