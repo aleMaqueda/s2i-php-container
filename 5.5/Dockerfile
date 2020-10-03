@@ -37,8 +37,8 @@ RUN rpm -Uvh tcl-8.5.13-8.el7.x86_64.rpm
 RUN rpm -Uvh environment-modules-3.2.10-10.el7.x86_64.rpm
 RUN rpm -Uvh php55-runtime-2.1-5.el7.remi.x86_64.rpm
 
-RUN rpm -Uvh openssl-devel-1.0.2k-19.el7.x86_64.rpm
 RUN rpm -Uvh openssl-libs-1.0.2k-19.el7.x86_64.rpm
+RUN rpm -Uvh openssl-devel-1.0.2k-19.el7.x86_64.rpm
 RUN rmp -Uvh php55-php-common-5.5.38-11.el7.remi.x86_64.rpm
 
 RUN rpm -Uvh php55-php-cli-5.5.38-12.el7.remi.x86_64.rpm
