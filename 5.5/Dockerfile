@@ -16,41 +16,17 @@ LABEL io.k8s.description="Platform for building and running PHP 5.5 applications
       io.openshift.tags="builder,php,php55"
 
 # Install Apache httpd and PHP
-RUN yum install -y epel-release wget install policycoreutils-python openssl-libs
+RUN yum install -y epel-release wget install policycoreutils-python openssl-libs utils
 #RUN /usr/sbin/setenforce 0
 RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
-
-         
-
-RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/openssl-devel-1.0.2k-19.el7.x86_64.rpm
-
-RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-runtime-2.1-5.el7.remi.x86_64.rpm
-RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-php-cli-5.5.38-12.el7.remi.x86_64.rpm
-RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-php-pear-1.10.12-2.el7.remi.noarch.rpm
-RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-runtime-2.1-5.el7.remi.x86_64.rpm
-RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-2.1-5.el7.remi.x86_64.rpm
-RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/environment-modules-3.2.10-10.el7.x86_64.rpm
-RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/tcl-8.5.13-8.el7.x86_64.rpm
-RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-php-common-5.5.38-11.el7.remi.x86_64.rpm
-RUN wget https://rpms.remirepo.net/enterprise/7/remi/x86_64/php55-php-pecl-jsonc-1.3.9-1.el7.remi.x86_64.rpm
-
-
-
-RUN rpm -Uvh tcl-8.5.13-8.el7.x86_64.rpm
-RUN rpm -Uvh environment-modules-3.2.10-10.el7.x86_64.rpm
-RUN rpm -Uvh php55-runtime-2.1-5.el7.remi.x86_64.rpm
-RUN rpm -Uvh php55-php-pecl-jsonc-1.3.9-1.el7.remi.x86_64.rpm
-RUN rpm -Uvh php55-php-common-5.5.38-11.el7.remi.x86_64.rpm
-
-RUN rpm -Uvh php55-php-cli-5.5.38-12.el7.remi.x86_64.rpm
-RUN rpm -Uvh php55-php-pear-1.10.12-2.el7.remi.noarch.rpm
-RUN rpm -Uvh php55-2.1-5.el7.remi.x86_64.rpm
+RUN yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+RUN yum-config-manager --enable remi-php55
 
 ENV INSTALL_PKGS="httpd24 php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
                   php55-php-fpm php55-php-gd php55-php-intl php55-php-ldap php55-php-mbstring php55-php-pdo \
                   php55-php-pecl-memcache php55-php-process php55-php-soap php55-php-opcache php55-php-xml \
                   php55-php-gmp" 
-RUN yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus $INSTALL_PKGS
+RUN yum install -y  $INSTALL_PKGS
 RUN rpm -V $INSTALL_PKGS 
 RUN yum -y clean all --enablerepo='*'
 
