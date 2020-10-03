@@ -1,6 +1,13 @@
 #!/bin/sh
-pushd ${HOME} >/dev/null
-dirs -l -v
-ls -la
+#pushd ${HOME} >/dev/null
+#dirs -l -v
+#ls -la
 #tar cf - vendor
-popd >/dev/null
+#popd >/dev/null
+ls -la /tmp
+
+touch /tmp/artifact
+cd /tmp
+# the final step of the assemble script is to stream a tar of the artifacts to be saved, to stdout.
+# This tar stream will be received by s2i and used as an input to the build
+tar cf - artifact
