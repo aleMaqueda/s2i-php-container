@@ -60,7 +60,7 @@ RUN rpm -Uvh libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm
 RUN rpm -Uvh libmcrypt-2.5.8-13.el7.x86_64.rpm
 RUN rpm -Uvh php70u-common-7.0.33-1.ius.centos7.x86_64.rpm
 RUN rpm -Uvh php70u-mcrypt-7.0.33-1.ius.centos7.x86_64.rpm
-
+RUN sed -i '/\[mcrypt\]/a\extension=mcrypt.so' /etc/opt/rh/rh-php70/php.ini
 
 ENV PHP_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/php/ \
     APP_DATA=${APP_ROOT}/src \
