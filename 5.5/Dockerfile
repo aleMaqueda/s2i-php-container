@@ -44,8 +44,9 @@ COPY ./root/ /
 # In order to drop the root user, we have to make some directories world
 # writeable as OpenShift default security model is to run the container under
 # random UID.
-RUN mkdir -p /opt/rh/php55/root/
-RUN ln -s /opt/remi/php55/root/etc/ /opt/rh/php55/root/etc
+
+RUN mkdir -p /opt/rh/php55/
+RUN ln -s /opt/remi/php55/ /opt/rh/php55/
 RUN ln -s /etc/httpd/conf.d/php55-php.conf /opt/rh/httpd24/root/etc/httpd/conf.d/php55-php.conf
 RUN ln -s /bin/php55 /bin/php
 RUN ls -la /opt/rh/
