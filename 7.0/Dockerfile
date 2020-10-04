@@ -50,7 +50,7 @@ RUN yum install -y centos-release-scl && \
     rpm -V $INSTALL_PKGS && \
     yum -y clean all --enablerepo='*'
 RUN yum install -y epel-release
-RUN yum install wget
+RUN yum install wget libmcrypt-devel
 RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm
 RUN wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/l/libmcrypt-2.5.8-13.el7.x86_64.rpm
 RUN wget https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-mcrypt-7.0.33-1.ius.centos7.x86_64.rpm
