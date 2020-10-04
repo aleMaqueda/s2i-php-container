@@ -63,5 +63,4 @@ process_extending_files ./php-post-assemble/ ${PHP_CONTAINER_SCRIPTS_PATH}/post-
 # Fix source directory permissions
 fix-permissions ./
 fix-permissions ${HTTPD_CONFIGURATION_PATH}
-sed -i '/\[mcrypt\]/a\extension=mcrypt.so' /etc/opt/rh/rh-php70/php.ini
 
