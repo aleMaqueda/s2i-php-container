@@ -49,6 +49,7 @@ RUN yum install -y centos-release-scl && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS --nogpgcheck && \
     rpm -V $INSTALL_PKGS && \
     yum -y clean all --enablerepo='*'
+RUN yum install -y epel-release
 RUN yum install -y libmcrypt-devel
 RUN yum install -y php-mcrypt
 
