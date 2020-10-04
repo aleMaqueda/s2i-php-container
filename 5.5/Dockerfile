@@ -46,9 +46,11 @@ COPY ./root/ /
 # random UID.
 
 RUN mkdir -p /opt/rh/php55/root
-RUN ls -la /opt/remi/php55
-RUN ln -s /opt/remi/php55/root /opt/rh/php55/root
-RUN ls -la /opt/rh/php55/
+
+RUN ln -s /opt/remi/php55/root/* /opt/rh/php55/root/.
+RUN ls -la /opt/remi/php55/root/
+RUN ls -la /opt/rh/php55/root
+
 RUN ln -s /etc/httpd/conf.d/php55-php.conf /opt/rh/httpd24/root/etc/httpd/conf.d/php55-php.conf
 RUN ln -s /bin/php55 /bin/php
 RUN ls -la /opt/rh/
