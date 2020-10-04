@@ -17,7 +17,7 @@ LABEL io.k8s.description="Platform for building and running PHP 5.5 applications
 
 # Install Apache httpd and PHP
 RUN yum install -y centos-release-scl
-RUN yum-config-manager --enable rhel-server-rhscl-7-rpms
+RUN yum-config-manager --enable rhel-server-rhscl-7-rpms --enable rhel-server-rhscl-7-eus-rpms
 RUN yum install -y httpd24
 
 ENV INSTALL_PKGS="php55 php55-php php55-php-mysqlnd php55-php-pgsql php55-php-bcmath php55-php-devel \
