@@ -1,4 +1,4 @@
 #!/bin/sh
 pushd ${HOME} >/dev/null
-tar -cf vendor
+tar cf - vendor
 popd >/dev/null
