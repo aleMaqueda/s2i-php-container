@@ -50,6 +50,9 @@ RUN yum install -y centos-release-scl && \
     rpm -V $INSTALL_PKGS && \
     yum -y clean all --enablerepo='*'
 RUN yum install -y epel-release
+RUN yum install wget
+RUN wget https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-mcrypt-7.0.33-1.ius.centos7.x86_64.rpm
+RUN rpm -Uvh php70u-mcrypt-7.0.33-1.ius.centos7.x86_64.rpm
 RUN yum install -y libmcrypt-devel
 RUN yum install -y php-mcrypt
 
