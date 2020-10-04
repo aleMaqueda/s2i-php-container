@@ -47,6 +47,7 @@ COPY ./root/ /
 RUN mkdir -p /opt/rh/php55/root/
 RUN ln -s /opt/remi/php55/root/etc/ /opt/rh/php55/root/etc
 RUN ln -s /etc/httpd/conf.d/php55-php.conf /opt/rh/httpd24/root/etc/httpd/conf.d/php55-php.conf
+RUN ln -s /bin/php55 /bin/php
 RUN ls -la /opt/rh/
 
 RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf && \
