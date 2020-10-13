@@ -94,7 +94,7 @@ RUN echo "relay.imss.gob.mx" >> /etc/mail/local-host-names
 RUN echo "Connect:172.16.23.18    RELAY" >> /etc/mail/access
 RUN echo "Connect:172.16.23.17    RELAY" >> /etc/mail/access
 RUN echo "Connect:10.100.1.173    RELAY" >> /etc/mail/access
-RUN echo "172.16.23.18 relay.imss.gob.mx"
+RUN echo "172.16.23.18 relay.imss.gob.mx >> /etc/hosts"
 RUN m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf 
 RUN makemap hash /etc/mail/access.db < /etc/mail/access
 RUN make -C /etc/mail 
