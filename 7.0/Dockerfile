@@ -99,6 +99,8 @@ RUN m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 RUN makemap hash /etc/mail/access.db < /etc/mail/access
 RUN make -C /etc/mail 
 RUN systemctl enable sendmail
+RUN sendmail -bm -vt < /tmp/abc.txt
+
 USER 1001
 
 # Set the default CMD to print the usage of the language image
