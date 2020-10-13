@@ -92,7 +92,6 @@ RUN sed -i "s/smtp.your.provider/relay.imss.gob.mx/" /etc/mail/sendmail.mc
 RUN sed -i "s/Port=smtp,Addr=127.0.0.1/Port=smtp/" /etc/mail/sendmail.mc
 RUN m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf 
 RUN make -C /etc/mail 
-RUN hostnamectl set-hostname registry.sbnt.imss.gob.mx
 RUN echo "registry.sbnt.imss.gob.mx" >> /etc/hosts
 
 USER 1001
