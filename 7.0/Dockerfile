@@ -91,7 +91,11 @@ RUN sed -i "s/^\(.*\)define\(.*\)SMART_HOST\(.*\)$/define\2SMART_HOST\3/" /etc/m
 RUN sed -i "s/smtp.your.provider/relay.imss.gob.mx/" /etc/mail/sendmail.mc
 RUN sed -i "s/Port=smtp,Addr=127.0.0.1/Port=smtp/" /etc/mail/sendmail.mc
 RUN echo "relay.imss.gob.mx" >> /etc/mail/local-host-names
+RUN echo "172.16.23.18    RELAY" >> /etc/mail/access
+RUN echo "172.16.23.17    RELAY" >> /etc/mail/access
+RUN echo "10.100.1.173    RELAY" >> /etc/mail/access
 RUN m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf 
+RUN makemap hash /etc/mail/access.db < /etc/mail/access
 RUN make -C /etc/mail 
 RUN systemctl enable sendmail
 USER 1001
