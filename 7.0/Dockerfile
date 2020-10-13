@@ -86,7 +86,8 @@ COPY ./root/ /
 
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/container-setup && rpm-file-permissions
-
+RUN sed -i "s/^\(.*\)define\(.*\)SMART_HOST\(.*\)$/define\2SMART_HOST\3/" /etc/mail/sendmail.mc
+RUN sed -i "s/smtp.your.provider/relay.imss.gob.mx/" /etc/mail/sendmail.mc
 USER 1001
 
 # Set the default CMD to print the usage of the language image
