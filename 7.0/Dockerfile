@@ -99,7 +99,6 @@ RUN m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 RUN makemap hash /etc/mail/access.db < /etc/mail/access
 RUN make -C /etc/mail 
 RUN systemctl enable sendmail
-RUN /bin/systemctl start sendmail.service
 
 USER 1001
 
