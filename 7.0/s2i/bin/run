@@ -53,5 +53,6 @@ fi
 # pre-start files
 process_extending_files ${APP_DATA}/php-pre-start/ ${PHP_CONTAINER_SCRIPTS_PATH}/pre-start/
 sed -i '/\[mcrypt\]/a\extension=mcrypt.so' /etc/opt/rh/rh-php70/php.ini
-
+sed -i "s/^\(.*\)define\(.*\)SMART_HOST\(.*\)$/define\2SMART_HOST\3/" /etc/mail/sendmail.mc
+sed -i "s/smtp.your.provider/relay.imss.gob.mx/" /etc/mail/sendmail.mc
 exec httpd -D FOREGROUND
