@@ -98,8 +98,14 @@ RUN echo "172.16.23.18 relay.imss.gob.mx >> /etc/hosts"
 RUN m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf 
 RUN makemap hash /etc/mail/access.db < /etc/mail/access
 RUN make -C /etc/mail 
-RUN systemctl enable sendmail
 
+ENV container docker
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
+systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+RUN systemctl enable sendmail
+VOLUME /run /tmp
 USER 1001
 
 # Set the default CMD to print the usage of the language image
