@@ -5,7 +5,7 @@ FROM centos/s2i-base-centos7
 
 EXPOSE 8080
 EXPOSE 8443
-
+EXPOSE 25
 # Description
 # This image provides an Apache 2.4 + PHP 7.0 environment for running PHP applications.
 # Exposed ports:
@@ -111,8 +111,8 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     rm -f /lib/systemd/system/anaconda.target.wants/*;
 RUN echo 'Docker!' | passwd --stdin root     
 RUN systemctl enable sendmail
-VOLUME /run /tmp
+VOLUME [ "/sys/fs/cgroup" ]
 USER 1001
-
+CMD ["/usr/sbin/init"]
 # Set the default CMD to print the usage of the language image
-CMD $STI_SCRIPTS_PATH/usage
+#CMD $STI_SCRIPTS_PATH/usage
