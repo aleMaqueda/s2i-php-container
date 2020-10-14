@@ -51,7 +51,7 @@ RUN yum install -y centos-release-scl && \
     yum -y clean all --enablerepo='*'
 RUN yum install -y epel-release
 RUN yum update -y update
-RUN yum install -y ssmtp telnet wget libmcrypt-devel net-tools
+RUN yum install -y msmtp telnet wget libmcrypt-devel net-tools
 RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm
 RUN wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/l/libmcrypt-2.5.8-13.el7.x86_64.rpm
 RUN wget https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-mcrypt-7.0.33-1.ius.centos7.x86_64.rpm
@@ -86,9 +86,8 @@ COPY ./root/ /
 
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/container-setup && rpm-file-permissions
-
+RUN echo 'Docker!' | passwd --stdin root 
 RUN sed -i  "s/mailhub=mail/mailhub=relay.imss.gob.mx/" /etc/ssmtp/ssmtp.conf
-
 USER 1001
 
 # Set the default CMD to print the usage of the language image
