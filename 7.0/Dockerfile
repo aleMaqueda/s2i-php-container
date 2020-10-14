@@ -51,7 +51,7 @@ RUN yum install -y centos-release-scl && \
     yum -y clean all --enablerepo='*'
 RUN yum install -y epel-release
 RUN yum update -y update
-RUN yum install -y sendmail sendmail-cf telnet wget libmcrypt-devel net-tools
+RUN yum install -y ssmtp telnet wget libmcrypt-devel net-tools
 RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm
 RUN wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/l/libmcrypt-2.5.8-13.el7.x86_64.rpm
 RUN wget https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-mcrypt-7.0.33-1.ius.centos7.x86_64.rpm
@@ -86,33 +86,8 @@ COPY ./root/ /
 
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/container-setup && rpm-file-permissions
-
-RUN sed -i "s/^\(.*\)define\(.*\)SMART_HOST\(.*\)$/define\2SMART_HOST\3/" /etc/mail/sendmail.mc
-RUN sed -i "s/smtp.your.provider/relay.imss.gob.mx/" /etc/mail/sendmail.mc
-RUN sed -i "s/Port=smtp,Addr=127.0.0.1/Port=smtp/" /etc/mail/sendmail.mc
-RUN echo "relay.imss.gob.mx" >> /etc/mail/local-host-names
-RUN echo "Connect:172.16.23.18    RELAY" >> /etc/mail/access
-RUN echo "Connect:172.16.23.17    RELAY" >> /etc/mail/access
-RUN echo "Connect:10.100.1.173    RELAY" >> /etc/mail/access
-RUN echo "172.16.23.18 relay.imss.gob.mx >> /etc/hosts"
-RUN m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf 
-RUN makemap hash /etc/mail/access.db < /etc/mail/access
-RUN make -C /etc/mail 
-
-ENV container docker
-RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
-    systemd-tmpfiles-setup.service ] || rm -f $i; done); \
-    rm -f /lib/systemd/system/multi-user.target.wants/*;\
-    rm -f /etc/systemd/system/*.wants/*;\
-    rm -f /lib/systemd/system/local-fs.target.wants/*; \
-    rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
-    rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-    rm -f /lib/systemd/system/basic.target.wants/*;\
-    rm -f /lib/systemd/system/anaconda.target.wants/*;
 RUN echo 'Docker!' | passwd --stdin root     
-RUN systemctl enable sendmail
-VOLUME [ "/sys/fs/cgroup" ]
 USER 1001
-CMD ["/usr/sbin/init"]
+
 # Set the default CMD to print the usage of the language image
-#CMD $STI_SCRIPTS_PATH/usage
+CMD $STI_SCRIPTS_PATH/usage
