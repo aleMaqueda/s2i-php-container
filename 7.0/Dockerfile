@@ -87,7 +87,6 @@ COPY ./root/ /
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/container-setup && rpm-file-permissions
 RUN echo 'Docker!' | passwd --stdin root 
-RUN sed -i  "s/mailhub=mail/mailhub=relay.imss.gob.mx/" /etc/ssmtp/ssmtp.conf
 USER 1001
 
 # Set the default CMD to print the usage of the language image
