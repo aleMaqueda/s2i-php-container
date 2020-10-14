@@ -112,7 +112,7 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 RUN echo 'Docker!' | passwd --stdin root     
 RUN systemctl enable sendmail
 VOLUME [ "/sys/fs/cgroup" ]
-USER 1001
+#USER 1001
 CMD ["/usr/sbin/init"]
 # Set the default CMD to print the usage of the language image
 #CMD $STI_SCRIPTS_PATH/usage
